@@ -40,6 +40,10 @@ export default {
             link: "/grid/",
           },
           {
+            text: "基本使用说明",
+            link: "/grid/basic"
+          },
+          {
             text: "“在线 IDE”",
             link: "/grid/ide"
           },

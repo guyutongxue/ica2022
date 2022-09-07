@@ -23,8 +23,18 @@
     /* https://uigradients.com/ */
 .action-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
+}
+@media (min-width: 576px) {
+    .action-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media (min-width: 992px) {
+    .action-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
 a.action {
     display: block;
