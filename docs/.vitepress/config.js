@@ -69,6 +69,10 @@ export default {
             link: "/cpp/",
           },
           {
+            text: "常见问题",
+            link: "/cpp/faq",
+          },
+          {
             text: "与 C 的关系",
             link: "/cpp/c"
           }
@@ -93,6 +97,11 @@ export default {
           {
             text: "“抄程序”练习",
             link: "/answer/copy"
+          },
+          
+          {
+            text: "题目“统计字符”",
+            link: "/answer/statistics"
           }
         ],
       },

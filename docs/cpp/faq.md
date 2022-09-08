@@ -6,9 +6,14 @@
 
 有些时候，即便翻译为中文，你仍然看不懂这些错误。这时可以问问助教、同学或者老师。无论如何，下面列出了一些常见错误。
 
-### `expected ';' before` …
+### `expected ';' before ...`
 
 你或许少写了语句结尾的分号。
+
+### `stray '\243' in program` `extended character ... not valid in an identifier`
+
+- 你或许使用了中文符号。请仔细检查，并将它们替换为英文符号。
+- 你或许从微信、网页等来源直接复制了代码。这些代码包含许多不可见字符，导致编译错误。此时我建议你“手抄”一遍。
 
 ## 为什么不建议使用 `<bits/stdc++.h>`？
 
@@ -27,4 +32,20 @@
 
 这是个 Windows 上更麻烦的问题。目前没有容易的解决办法。
 
-## 为什么不建议
+## 为什么不建议 `using namespace std;`？
+
+`std` 命名空间里的名字太多了。据不完全统计，截止至 C++23，`std` 命名空间下共有 1800 多个名字，其中不乏大量常见单词，如 `std::max` `std::begin` `std::size` 等等。
+
+使用 `using namespace std;` 后，你就需要确保你当前程序的变量名、函数名、类型名与这 1800 多个名字不冲突（尤其是那些喜欢用 `<bits/stdc++.h>` 的同学）。名字冲突造成的错误通常是比较难发现的。
+
+一个很经典的错误，就是定义于 `<functional>` 的 `std::bind`，与 POSIX 系统的 `bind` API 是重名的。在 `using namespace std;` 后，这两个函数就无法区分了，导致一系列难以察觉的错误。
+
+因此我不建议你这样做。如果你觉得每次都写 `std::cin` `std::cout` `std::endl` 非常烦，可以改用 using 声明：
+
+```cpp
+// 只引入下面三个名字，不引入其它 std 下的名字
+using std::cin, std::cout, std::endl;
+```
+
+
+
