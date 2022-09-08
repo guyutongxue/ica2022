@@ -90,6 +90,19 @@ export default {
             text: "习题答案",
             link: "/answer/",
           },
+          {
+            text: "“抄程序”练习",
+            link: "/answer/copy"
+          }
+        ],
+      },
+      {
+        text: "小工具",
+        items: [
+          {
+            text: "编译信息翻译",
+            link: "/app/translation",
+          },
         ],
       },
     ],
