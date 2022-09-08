@@ -52,6 +52,10 @@ export default {
             link: "/grid/vscode"
           },
           {
+            text: "提交结果说明",
+            link: "/grid/submit_result"
+          },
+          {
             text: "常见问题",
             link: "/grid/faq"
           }
