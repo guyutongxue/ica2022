@@ -75,6 +75,10 @@ export default {
           {
             text: "与 C 的关系",
             link: "/cpp/c"
+          },
+          {
+            text: "未定义行为",
+            link: "/cpp/ub"
           }
         ],
       },
