@@ -13,8 +13,20 @@
 ## 快捷链接
 
 <div class="action-container">
-    <a href="https://programming.pku.edu.cn/course/0b0ead5e1550494cb060fca75d9e2604/" class="action bg5">编程网格</a>
-    <a href="https://learn-cpp.tk" class="action bg6">C++ 教程</a>
+    <a
+      href="https://programming.pku.edu.cn/course/0b0ead5e1550494cb060fca75d9e2604/"
+      class="action bg5"
+      target="_blank" rel="noreferrer"
+    >
+      编程网格
+    </a>
+    <a 
+      href="https://learn-cpp.tk"
+      class="action bg6"
+      target="_blank" rel="noreferrer"
+    >
+      C++ 教程
+    </a>
 </div>
 
 此站点由谷雨同学制作。如果有任何问题或想要补充的内容，请直接私戳谷雨助教，或者给 `guyutongxue@163.com` 发邮件。

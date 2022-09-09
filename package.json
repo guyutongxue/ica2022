@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
   },
   "author": "Guyutongxue",
   "license": "MIT",
@@ -18,10 +18,13 @@
     }
   },
   "devDependencies": {
+    "@types/node": "^18.7.16",
+    "node-fetch": "^3.2.10",
     "vitepress": "1.0.0-alpha.13",
     "vue": "^3.2.38"
   },
   "dependencies": {
-    "@gytx/gcc-translation": "^0.1.1"
+    "@gytx/gcc-translation": "^0.1.1",
+    "shiki": "^0.11.1"
   }
 }
