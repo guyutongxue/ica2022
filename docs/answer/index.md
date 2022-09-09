@@ -29,9 +29,11 @@
         题目详情
       </div>
     </div>
-    <pre v-if="currentId && sources[currentId] && activeTab !== 'dsc'"><code>{{
-      sources[currentId][activeTab === 'cpp' ? 0 : 1]
-    }}</code></pre>
+    <pre
+      v-if="currentId && sources[currentId] && activeTab !== 'dsc'"
+    ><code
+      v-html="sources[currentId][activeTab === 'cpp' ? 0 : 1]"
+    ></code></pre>
     <div class="dsc" v-if="currentId && activeTab === 'dsc'" v-html="currentDsc">
     </div>
     <div class="dsc" v-if="currentId === null">
@@ -44,7 +46,7 @@
 #container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - var(--vp-nav-height));
 }
 #container .sidebar {
   flex-basis: 30%;
@@ -116,11 +118,17 @@
 }
 .dsc {
   padding: 1rem;
+  overflow: auto;
 }
 </style>
 
 <script setup>
 import { ref } from "vue";
+import Prism from "prismjs";
+import "prismjs/components/prism-clike.js";
+import "prismjs/components/prism-c.js";
+import "prismjs/components/prism-cpp.js";
+import "prismjs/themes/prism-dark.min.css";
 
 const problist = ref([]);
 const sources = ref({});
@@ -145,7 +153,7 @@ async function loadSource(prob) {
         return r.text();
       }
     }));
-    sources.value[id] = source;
+    sources.value[id] = source.map(s => Prism.highlight(s, Prism.languages.cpp, "cpp"));
   }
 }
 
