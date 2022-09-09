@@ -19,6 +19,8 @@ C++14 标准移除了 `std::gets` 函数，所以这里不能用它。你应该�
 
 ## 完整解答（待调整）
 
+### C++ 风格
+
 ```cpp
 #include <iostream>
 #include <string>
@@ -30,7 +32,28 @@ int main() {
     auto starNum = std::count(a.begin(), a.end(), '*');
     auto atNum = std::count(a.begin(), a.end(), '@');
 
-    std::cout << "*������" << starNum << "��;" << std::endl;
-    std::cout << "@������" << atNum << "��." << std::endl;
+    std::cout << "*出现了" << starNum << "次;" << std::endl;
+    std::cout << "@出现了" << atNum << "次." << std::endl;
+}
+```
+
+### 计概 A 风格
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    char a[1001] = {};
+    cin.getline(a, 1000, '\n');
+    int num1 = 0, num2 = 0;
+    for (int i = 0; a[i] != '\0'; i++) {
+        if (a[i] == '*')
+            num1++;
+        if (a[i] == '@')
+            num2++;
+    }
+    cout << "*出现了" << num1 << "次;" << endl;
+    cout << "@出现了" << num2 << "次." << endl;
 }
 ```

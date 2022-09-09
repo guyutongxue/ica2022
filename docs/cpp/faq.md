@@ -50,5 +50,10 @@
 using std::cin, std::cout, std::endl;
 ```
 
+## 为什么有的代码里 main 函数没有 `return`？
 
+因为 C++ 规定，如果 main 函数结尾前没有 return 语句，则自动添加 `return 0;`。因此如果懒得写 `return 0;` 的话是可以省略掉的。
 
+如果程序需要中途退出，我们也建议使用 `std::exit(0);`。
+
+> 注意：C 语言在 C99 之前无此规则。
