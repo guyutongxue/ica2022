@@ -58,7 +58,7 @@
   border-radius: 5px;
 }
 .prob-title:hover {
-  background-color: #ebebeb
+  background-color: var(--vp-c-text-4)
 }
 .prob-title.active {
   font-weight: bold;
@@ -82,7 +82,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  --color: 16 16 16
+  --color: 16 16 16;
+}
+.dark .tabs {
+  --color: 240 240 240;
 }
 .tab {
   --text-opacity: 0.5;
