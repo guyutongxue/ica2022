@@ -79,6 +79,10 @@ export default {
           {
             text: "未定义行为",
             link: "/cpp/ub"
+          },
+          {
+            text: "编码",
+            link: "/cpp/encoding"
           }
         ],
       },
