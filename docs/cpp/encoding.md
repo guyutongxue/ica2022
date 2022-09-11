@@ -21,7 +21,7 @@
 
 Windows 这边问题变得复杂起来。出于历史原因，Windows 采取了内核与界面分离的设计。在 Windows 内核，采用 UCS-2，后来改成了 UTF-16 的双/四字节编码。而在用户界面，则根据 Windows 的发售地区进行调整；比如在中国大陆上就以 CP936 编码（也即 GBK）显示用户内容；在日本就以 CP932 编码（也即 Shift_JIS）显示用户内容。
 
-这个用户界面的编码有个术语，叫做**代码页**（Code page）。而虽发售地区而改变的、默认的代码页，称为 ANSI 代码页（ANSI Code Page，简称 ACP）；有时也称为 ANSI 编码。
+这个用户界面的编码有个术语，叫做**代码页**（Code page）。而随发售地区而改变的、默认的代码页，称为 ANSI 代码页（ANSI Code Page，简称 ACP）；有时也称为 ANSI 编码。
 
 > ANSI 代码页与 ANSI 组织（及其发布的任何编码标准）没有关系；这纯粹是微软的命名失误。
 
@@ -74,13 +74,13 @@ DWORD ExpandEnvironmentStringsA(
 
 API 名字的结尾是 `A`，而且它的形参类型也全是指向 `char` 的指针。这表明，你需要传入一些“窄”字符组成的字符串到内核。然而，内核是用 UTF-16 的，它怎么解读这里的“窄”字符呢？答案就是使用 ANSI 代码页。
 
-比软水如果当前系统的 ACP 是 GBK，那么你必须传入符合 GBK 编码规范的一系列 `char` 进去（每个汉字占两个 `char`）。但如果程序在运行时的 ACP 不是 GBK，那内核就会用其它的方式解释这一串 `char`；此时你再传入 GBK 编码的字符进去，得到的就只能是乱码。
+比如说如果当前系统的 ACP 是 GBK，那么你必须传入符合 GBK 编码规范的一系列 `char` 进去（每个汉字占两个 `char`）。但如果程序在运行时的 ACP 不是 GBK，那内核就会用其它的方式解释这一串 `char`；此时你再传入 GBK 编码的字符进去，得到的就只能是乱码。
 
 > 一个常见的编码错误，就是在 ACP 为 GBK 的 Windows 上运行来自日本的视觉小说游戏。这些游戏的开发者喜欢使用 A 版本 Windows API，并且向他们传入 Shift_JIS 编码（日本地区的 ACP） 的窄字符；它们在日本本地运行良好，但一旦跑到中国大陆，内核就会尝试用 GBK 解释 Shift_JIS 编码，于是你就在界面上看见了奇奇怪怪的乱码。
 
 A 版本 Windows API 很容易造成乱码，因此微软官方不推荐开发者用。但它又非常方便：因为开发者的用户界面都是 ANSI 编码的，如果用 W 版本就需要额外的转换；而且仅仅在本地运行也一般不会有什么乱码。所以，网上的很多代码都会“滥用” A 版本 Windows API，某种程度上不是好事。
 
-A 版本流行还有一个很重要的原因：C++ 标准库的设施里，都是 `char` 更常用；你几乎见不到 `wchar_t` 的存在。更进一步，类似 `std::cin` `std::cout` 之类的基于 `char` 的库设施，底层是要转换到 `WriteConsoleA` 等 A 版本 Windows API 的！换句话，你在不知不觉中，一直在使用不被推荐的 A 版本 Windows API！
+A 版本流行还有一个很重要的原因：C++ 标准库的设施里，都是 `char` 更常用；你几乎见不到 `wchar_t` 的存在。更进一步，类似 `std::cin` `std::cout` 之类的基于 `char` 的库设施，底层是要转换到 `WriteConsoleA` 等 A 版本 Windows API 的！换句话，你在不知不觉中，一直在使用不被推荐的 A 版本 Windows API。
 
 > 阅读完这一节，只要智商在线的人都知道 A 版本的 A 是 ANSI 的缩写而不是 ASCII 的缩写。
 
@@ -250,7 +250,7 @@ int wmain(int argc, wchar_t** argv, wchar_t** envp) {
 
 ## 可不可以 UTF-16 遍地开花？
 
-在 Windows 上，OK。你的代码里可以全是 `std::wstring` `std::wcout` `std::wcin`（需要 `_setmode` 一下），然后都用 `wchar_t`，没问题。
+在 Windows 上，OK。你的代码里可以全是 `std::wstring` `std::wcout` `std::wcin`（需要 `_setmode` 一下），然后都用 `L"..."` `wchar_t`，没问题。
 
 但是，这份代码就彻底和跨平台绝缘了；`wchar_t` 在其它平台上大多实现为 32 比特（即 UTF-32）。至少 UTF-8 遍地开花在其它平台上是天生的，`wchar_t` 则两头都得做适配。
 

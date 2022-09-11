@@ -81,6 +81,10 @@ export default {
             link: "/cpp/ub"
           },
           {
+            text: "EOF",
+            link: "/cpp/eof"
+          },
+          {
             text: "编码",
             link: "/cpp/encoding"
           }
