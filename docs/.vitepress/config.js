@@ -87,6 +87,10 @@ export default {
           {
             text: "编码",
             link: "/cpp/encoding"
+          },
+          {
+            text: "展望未来",
+            link: "/cpp/future"
           }
         ],
       },
