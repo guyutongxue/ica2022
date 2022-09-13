@@ -2,6 +2,8 @@
 
 安装 VS Code 并安装了 GCC-兼容的编译器（如 MinGW、LLVM MinGW 或 Apple Clang 等但不含 MSVC），则可以尝试使用“编程网格” VS Code 扩展。
 
+<iframe src="//player.bilibili.com/player.html?aid=462922846&bvid=BV11L411t7a6&cid=405885756&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
 > MSVC 的支持目前暂时没有计划，工作量有点大<del>，其实就是懒得碰屎山</del>。
 
 前往[此处](https://marketplace.visualstudio.com/items?itemName=Guyutongxue.programming-grid)安装该扩展，或者直接在 VS Code 的扩展页面搜索“编程网格”并安装。
@@ -29,3 +31,10 @@ https://programming.pku.edu.cn/course/0b0ead5e1550494cb060fca75d9e2604/
 此扩展还提供了翻译编译错误信息为中文（仅 GCC 可用）的功能。
 
 > 你听说过科乐美秘技吗？
+
+<style>
+iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+</style>
