@@ -24,12 +24,84 @@ C++ 标准规定，一段源代码在编译后有六种可能的结果：
 
 ## 常见未定义行为列表
 
-### 有符号整数溢出
-
 ### 算术类型除以零
+
+```cpp
+int main() {
+    int a{42 / 0}; // 未定义行为，一般引发程序运行时错误
+    double b{42.0 / 0.0}; // 未定义行为，但一般不会引发运行时错误
+}
+```
+
+### 使用不确定的值
+
+```cpp
+#include <iostream>
+
+int main() {
+    int a; // a 的值不确定
+    int b{a}; // 未定义行为：使用不确定的值
+
+    char str[100]; // str 的值不确定
+    std::cout << str; // 未定义行为：输出不确定的值
+
+    int b{}; // OK，初始化为 0
+    char str2[100]{}; // OK，全部初始化为 '\0'
+}
+```
 
 ### 非法指针访问
 
+```cpp
+#include <iostream>
+
+int main() {
+    int* p;
+    *p = 42; // 未定义行为：访问不确定的指针值
+
+    int a[5]{};
+    std::cout << a[5]; // 未定义行为：数组越界
+    std::cout << a[-1]; // 未定义行为：数组越界
+
+    int* q{nullptr};
+    *q = 42; // 未定义行为：对空指针解地址
+}
+
+```
+
+### 抵达函数体结尾但未 return
+
+```cpp
+#include <iostream>
+
+int f() {
+    std::cout << "f()" << std::endl;
+} // 未定义行为：返回 int 但未 return
+
+void g() {
+    std::cout << "g()" << std::endl;
+} // OK，相当于结尾 return;
+
+int main() {
+  f(); // 触发未定义行为
+  g();
+} // OK，main 函数可省略 return 0;
+```
+
+### 有符号整数溢出
+
+```cpp
+#include <limits>
+
+int main() {
+    // 当 a 为 int 类型最大值时
+    int a = std::numeric_limits<int>::max();
+    a++; // 未定义行为
+
+    unsigned b = std::numeric_limits<unsigned>::max();
+    b++; // OK，回绕到 0
+}
+```
 
 -----
 
