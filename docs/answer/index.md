@@ -20,16 +20,20 @@
     </details>
   </div>
   <div class="content">
-    <div v-if="currentId !== null" class="tabs">
-      <div class="tab" @click="() => activeTab = 'cpp'" :class="{ active: activeTab === 'cpp' }">
-        C++ 风格解答
+    <div v-if="currentId !== null" class="tabs-container">
+      <div class="tabs">
+        <div class="tab" @click="() => activeTab = 'cpp'" :class="{ active: activeTab === 'cpp' }">
+          C++ 风格解答
+        </div>
+        <div class="tab" @click="() => activeTab = 'ica'" :class="{ active: activeTab === 'ica' }">
+          计概 A 风格解答
+        </div>
+        <div class="tab" @click="() => activeTab = 'dsc'" :class="{ active: activeTab === 'dsc' }">
+          题目详情
+        </div>
       </div>
-      <div class="tab" @click="() => activeTab = 'ica'" :class="{ active: activeTab === 'ica' }">
-        计概 A 风格解答
-      </div>
-      <div class="tab" @click="() => activeTab = 'dsc'" :class="{ active: activeTab === 'dsc' }">
-        题目详情
-      </div>
+      <button class="expand-btn" @click="expand">&nbsp;全&nbsp;</button>
+      <button class="close-btn" @click="shrink">&nbsp;x&nbsp;</button>
     </div>
     <pre
       v-if="currentId && sources[currentId] && activeTab !== 'dsc'"
@@ -39,7 +43,10 @@
     <div class="dsc" v-if="currentId && activeTab === 'dsc'" v-html="currentDsc">
     </div>
     <div class="dsc" v-if="currentId === null">
-      请在左侧题目列表选择题目
+      请在左侧题目列表选择题目<br>
+      <a href="javascript:void 0" @click="expand">
+        全屏模式
+      </a>
     </div>
   </div>
 </div>
@@ -47,8 +54,18 @@
 <style>
 #container {
   display: flex;
+  background-color: var(--vp-c-bg);
   flex-direction: row;
   height: calc(100vh - var(--vp-nav-height));
+}
+#container.fullscreen {
+  z-index: 100; 
+  width: 100vw;
+  height: 100vh;
+  padding-left: 1rem;
+  position: fixed; 
+  top: 0;
+  left: 0;
 }
 #container .sidebar {
   flex-basis: 30%;
@@ -80,7 +97,18 @@
   background-color: var(--vp-code-block-bg);
   overflow: auto;
 }
+.tabs-container {
+  display: flex;
+  flex-direction: row;
+}
+.close-btn,.fullscreen .expand-btn {
+  display: none;
+}
+.fullscreen .close-btn,.expand-btn {
+  display: block;
+}
 .tabs {
+  flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -163,5 +191,12 @@ async function loadSource(prob) {
 }
 
 fetch("/problist.json").then(r => r.json()).then(v => problist.value = v);
+
+function expand() {
+  document.querySelector("#container").classList.add("fullscreen");
+}
+function shrink() {
+  document.querySelector("#container").classList.remove("fullscreen");
+}
 
 </script>
