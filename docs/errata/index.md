@@ -5,6 +5,7 @@
 ## 关于课件内标点符号的勘误
 
 旧版课件中，由于未关闭 PowerPoint 的自动标点符号修正功能，存在大量被错误使用的标点符号。这类错误包括但不限于：
+
 - 弯引号 `“` `”` `‘` `’` 应使用直引号 `"` `'`；
 - 中文标点符号 `：` `；` 等应使用英文标点符号 `:` `;`
 
@@ -32,7 +33,7 @@
   ![type system](https://learn-cpp.tk/assets/typesystem.svg)
 - 第 9 页，标准上 1KB = 1000B，1MB = 1000KB etc.，而 1KiB = 1024B，1MiB = 1024 KiB etc.。但习惯上可用 KB 代替 KiB 单位，具体情况要具体分析。
 - 第 16 页起的所有表格均应包含 `long long`。`long long` 类型的长度不短于 `long`，一般实现为 64 位长。
-- 第 33 页、34 页，标题不应为“输入x进制”，而是“使用x进制常量”。此外，可用 `0b00110101` 的形式作为二进制字面量。
+- 第 33 页、34 页，标题不应为“输入 x 进制”，而是“使用 x 进制常量”。此外，可用 `0b00110101` 的形式作为二进制字面量。
 - 第 37 页、42 页，大部分实现如此。标准不规定取值范围，可用 `std::numeric_limits<T>::max()` 查询。
 - 第 51 页，图示二进制表示并非 314.16，该示意仅表示“使用科学记数法”存储浮点数。
 - 第 56 页，仅编号 0 - 127 这 128 个字符的含义被规定。编号 128 以后的字符，由各个国家自行定义。
@@ -40,6 +41,7 @@
 - 第 70 页乱码。完整的关键字列表可参考[这里](https://zh.cppreference.com/w/cpp/keyword)。
 
 ## 第 6 讲 运算成分
+
 - 第 9 页至第 19 页：此部分所讲述的是“隐式类型转换”而非“赋值运算符”。具体更正如下：
   - 第 9 页，标题应为“隐式类型转换”，文中的“= 两边”改为“赋值或初始化时”。下方的例子代码为初始化时发生的隐式转换。
   - 第 10 页，“= 右边的操作数”改为“用来初始化或者赋值的表达式”。
@@ -92,3 +94,30 @@
 - 第 42 页，右侧“内存表示”下标错误；删去所有第二下标为 `3` 的行：`a[0][3][0]` `a[0][3][1]` `a[0][3][2]` `a[0][3][3]` 等。
 - 第 51 页数组 `teacher` 未初始化；该行声明改为 `int teacher[21][13] = {};`。
 - 第 73 页、76 页出现了指针语法，目前请暂时忽略。
+
+## 第 9 讲 字符数组与字符串
+
+- 第 6 页，“赋值语句”改为“赋值表达式”，补充说明“数组永远不可以被赋值”。`str1[]="China";` 不是合法的 C++ 语法。
+- 第 16 页超纲，可以删去。
+- 第 24 页，所有 `std::setiosflags` 都可改为不依赖于 `<iomanip>` 的形式，具体如下：
+  | `std::ios` 标志 | 简便写法 |
+  |---|---|
+  | `setiosflags(ios::fixed)` | `std::fixed` |
+  | `setiosflags(ios::scientific)` | `std::scientific` |
+  | 无 | `std::hexfloat`（十六进制输出浮点表示） |
+  | 无 | `std::defaultfloat`（恢复默认浮点表示） |
+  | `setiosflags(ios::left)` | `std::left` |
+  | `setiosflags(ios::right)` | `std::right` |
+  | `setiosflags(ios::skipws)` | `std::skipws` `std::noskipws` |
+  | `setiosflags(ios::uppercase)` | `std::uppercase` |
+  | `setiosflags(ios::lowercase)` | `std::lowercase` |
+  | `setiosflags(ios::showpos)` | `std::showpos` `std::noshowpos` |
+- 第 24 页，`iostream.h` 改为 `<iostream>`，`iomanip.h` 改为 `<iomanip>`。所有名字都应含有 `std::` 前缀。
+- 第 25-27 页，所有 `[re]setopsflags` 都可以改写为简便写法。
+- 第 28、30 页，补充说明对流输出宽度的控制是一次性的。
+- 第 41 页需要补充的知识过多，删去。
+- 第 43 页是 C 风格函数，删去。
+- 第 57-59 页所述三参数 `cin.get` 几乎无用，删去。
+- 第 74 页红色字体处应为 `#include <cstring>`。
+- 第 78 页链接 `www.cplusplus.com` 已停止更新，改为 https://zh.cppreference.com/ 。
+

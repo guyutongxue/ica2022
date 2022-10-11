@@ -27,6 +27,13 @@
     >
       C++ 教程
     </a>
+    <a 
+      href="https://www.wjx.cn/vm/mYItJDv.aspx"
+      class="action bg8"
+      target="_blank" rel="noreferrer"
+    >
+      习题反馈
+    </a>
 </div>
 
 ## 基本信息
@@ -99,5 +106,8 @@ a.action:hover {
 }
 .bg7 {
     background: linear-gradient(to right, #e9d362, #333333);
+}
+.bg8 {
+    background: linear-gradient(to right, #800080, #ffc0cb);
 }
 </style>
