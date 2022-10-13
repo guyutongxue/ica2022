@@ -1,5 +1,7 @@
 #include <iostream>
 
+// https://www.wolframalpha.com/input?i=inverse+of+%5B%5Ba%2C1%2C0%2C0%2C0%5D%2C%5B0%2Cb%2C1%2C0%2C0%5D%2C%5B0%2C0%2Cc%2C1%2C0%5D%2C%5B0%2C0%2C0%2Cd%2C1%5D%2C%5B1%2C0%2C0%2C0%2Ce%5D%5D
+
 int main() {
     int k;
     std::cin >> k;
