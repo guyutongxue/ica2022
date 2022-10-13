@@ -4,12 +4,6 @@
 
 > 我尽可能提供两种版本的答案，“C++ 风格”和“计概 A 风格”。“计概 A 风格”是在授课范围内、易于理解的代码；“C++ 风格”则倾向于工程化、标准化的高水平代码。建议无基础同学优先阅读“计概 A 风格”，“C++ 风格”可作为拓展提高。
 
-::: warning
-
-这周的作业答案还在施工中，大约周末完成。
-
-:::
-
 <div id="container">
   <div class="sidebar">
     <details v-for="i of problist">
@@ -173,7 +167,7 @@ const problist = ref([]);
 const sources = ref({});
 const currentId = ref(null);
 const currentDsc = ref(null);
-const activeTab = ref("cpp");
+const activeTab = ref("ica");
 
 async function loadSource(prob) {
   const id = prob.id;
