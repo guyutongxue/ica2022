@@ -4,6 +4,7 @@ specifiers:
   '@gytx/gcc-translation': ^0.1.1
   '@renbaoshuo/markdown-it-katex': ^2.0.2
   '@types/node': ^18.7.16
+  katex: ^0.16.3
   node-fetch: ^3.2.10
   prismjs: ^1.29.0
   vitepress: 1.0.0-alpha.13
@@ -11,7 +12,8 @@ specifiers:
 
 dependencies:
   '@gytx/gcc-translation': 0.1.1
-  '@renbaoshuo/markdown-it-katex': 2.0.2
+  '@renbaoshuo/markdown-it-katex': 2.0.2_katex@0.16.3
+  katex: 0.16.3
   prismjs: 1.29.0
 
 devDependencies:
@@ -214,11 +216,13 @@ packages:
     engines: {node: '>= 16.14.0'}
     dev: false
 
-  /@renbaoshuo/markdown-it-katex/2.0.2:
+  /@renbaoshuo/markdown-it-katex/2.0.2_katex@0.16.3:
     resolution: {integrity: sha512-peKX5VcHY2DXQ2AQaTduWkGwaQ2QSlscoOqRmOt6Fm9W+WmYacWnkzGsQeLlDw/lg9ZPSkE/SPSZnJC/kDEwnA==}
     peerDependencies:
       katex: '*'
       markdown-it: '>=6'
+    dependencies:
+      katex: 0.16.3
     dev: false
 
   /@types/node/18.7.16:
@@ -374,6 +378,11 @@ packages:
   /body-scroll-lock/4.0.0-beta.0:
     resolution: {integrity: sha512-a7tP5+0Mw3YlUJcGAKUqIBkYYGlYxk2fnCasq/FUph1hadxlTRjF+gAcZksxANnaMnALjxEddmSi/H3OR8ugcQ==}
     dev: true
+
+  /commander/8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+    dev: false
 
   /csstype/2.6.20:
     resolution: {integrity: sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA==}
@@ -640,6 +649,13 @@ packages:
   /jsonc-parser/3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
     dev: true
+
+  /katex/0.16.3:
+    resolution: {integrity: sha512-3EykQddareoRmbtNiNEDgl3IGjryyrp2eg/25fHDEnlHymIDi33bptkMv6K4EOC2LZCybLW/ZkEo6Le+EM9pmA==}
+    hasBin: true
+    dependencies:
+      commander: 8.3.0
+    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}

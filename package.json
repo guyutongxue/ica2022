@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@gytx/gcc-translation": "^0.1.1",
+    "katex": "^0.16.3",
     "@renbaoshuo/markdown-it-katex": "^2.0.2",
     "prismjs": "^1.29.0"
   }
