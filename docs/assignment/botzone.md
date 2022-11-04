@@ -31,4 +31,4 @@
 
 ## 观战/复盘
 
-你可以在 Botzone 观看一场对局。点击首页中“最新对局”中的任何一场对局即可。比如 https://botzone.org.cn/globalmatchlist?game=5ab65ae77ec1de5c52e18940 。
+你可以在 Botzone 观看一场对局。点击[对局列表](https://botzone.org.cn/globalmatchlist?game=5ab65ae77ec1de5c52e18940)中的任何一场对局即可。
