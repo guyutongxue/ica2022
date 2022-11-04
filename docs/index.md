@@ -6,6 +6,7 @@
     <a href="/ide/" class="action bg1">开发环境相关</a>
     <a href="/grid/" class="action bg7">编程网格相关</a>
     <a href="/cpp/" class="action bg2">C++ 相关</a>
+    <a href="/assignment/" class="action bg9">大作业相关</a>
     <a href="/errata/" class="action bg3">课件勘误</a>
     <a href="/answer/" class="action bg4">习题解答</a>
 </div>
@@ -33,6 +34,13 @@
       target="_blank" rel="noreferrer"
     >
       习题反馈
+    </a>
+    <a
+      href="https://botzone.org.cn"
+      class="action bg10"
+      target="_blank" rel="noreferrer"
+    >
+      Botzone
     </a>
 </div>
 
@@ -109,5 +117,11 @@ a.action:hover {
 }
 .bg8 {
     background: linear-gradient(to right, #800080, #ffc0cb);
+}
+.bg9 {
+    background: linear-gradient(to right, #c4ad58, #b35d79);
+}
+.bg10 {
+    background: linear-gradient(to right, #adbb75, #234b91)
 }
 </style>

@@ -1,3 +1,6 @@
+// @ts-check
+import mdk from "@renbaoshuo/markdown-it-katex";
+
 export default {
   lang: "zh-CN",
   title: "计算概论 A",
@@ -95,6 +98,43 @@ export default {
         ],
       },
       {
+        text: "大作业",
+        items: [
+          {
+            text: "概述",
+            link: "/assignment/"
+          },
+          {
+            text: "不围棋规则",
+            link: "/assignment/rule"
+          },
+          {
+            text: "评分标准",
+            link: "/assignment/scoring"
+          },
+          {
+            text: "关于 TUI 开发",
+            link: "/assignment/tui"
+          },
+          {
+            text: "关于 GUI 开发",
+            link: "/assignment/gui"
+          },
+          {
+            text: "算法提示",
+            link: "/assignment/algorithm"
+          },
+          {
+            text: "Botzone 使用方法",
+            link: "/assignment/botzone"
+          },
+          {
+            text: "关于 Botzone CLI",
+            link: "/assignment/cli"
+          }
+        ]
+      },
+      {
         text: "课件勘误",
         items: [
           {
@@ -132,4 +172,9 @@ export default {
       },
     ],
   },
+  markdown: {
+    config: (md) => {
+      md.use(mdk);
+    }
+  }
 };

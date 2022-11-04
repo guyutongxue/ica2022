@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@gytx/gcc-translation': ^0.1.1
+  '@renbaoshuo/markdown-it-katex': ^2.0.2
   '@types/node': ^18.7.16
   node-fetch: ^3.2.10
   prismjs: ^1.29.0
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   '@gytx/gcc-translation': 0.1.1
+  '@renbaoshuo/markdown-it-katex': 2.0.2
   prismjs: 1.29.0
 
 devDependencies:
@@ -210,6 +212,13 @@ packages:
   /@gytx/gcc-translation/0.1.1:
     resolution: {integrity: sha512-82hpzn7dt2NJvsiJ+whal0egtHoR/f7zIGxqajKzculo/Vx/4ItdL3tTMqjuGgGZn90rwyl5wuNZRtduq9gsoQ==}
     engines: {node: '>= 16.14.0'}
+    dev: false
+
+  /@renbaoshuo/markdown-it-katex/2.0.2:
+    resolution: {integrity: sha512-peKX5VcHY2DXQ2AQaTduWkGwaQ2QSlscoOqRmOt6Fm9W+WmYacWnkzGsQeLlDw/lg9ZPSkE/SPSZnJC/kDEwnA==}
+    peerDependencies:
+      katex: '*'
+      markdown-it: '>=6'
     dev: false
 
   /@types/node/18.7.16:
