@@ -38,6 +38,8 @@
 - 终端用户界面（Terminal User Interface）。详情请参考[关于 TUI 开发](./tui)。
 - 图形用户界面（Graphic User Interface）。详情请参考[关于 GUI 开发](./gui)。
 
+关于读盘和存盘的功能，需要用到 C++ 中的文件读写库。虽然计概课程大纲里有这个，但我不知道能不能讲得到；所以请直接看[我的教程第十章](https://learn-cpp.tk/ch10/file_io/stream.html)。不用担心，这一部分内容几乎用不到超纲语法。如果你需要用到文件删除之类的操作，可以看[这一部分](https://learn-cpp.tk/ch10/filesystem.html)。
+
 #### 算法部分
 
 算法部分的代码，虽然也必须要完成，但你可以在开发初期使用简单的随机算法。如果你想用一些更聪明的算法，你可以参考李戈班助教王泽钧编写的[算法提示](./algorithm)。

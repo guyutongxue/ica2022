@@ -81,6 +81,8 @@ xmake r
 
 就可以编译并运行你的程序了。你应该能看到绘制了图形的窗口弹了出来。在该窗口上，按任意键盘上的按键退出程序。
 
+![](image/ege_screenshot.png)
+
 ### 启用 VS Code 的智能提示
 
 VS Code 第一次肯定会告诉你 `<graphics.h>` 找不到之类的错误。这是因为我们没有配置关于智能提示的设置。你可以做这样的操作：新建文件 `.vscode/c_cpp_properties.json`，写入：
@@ -140,8 +142,98 @@ F6 运行的话，则稍微复杂一点。最简单的，你直接上 GitHub 把
 
 ## Qt
 
-::: info
+Qt 是 C++ 上著名的开发平台、类库、框架、工具集。总之，它提供了各种各样的功能，图形界面什么的自然也就包含在内了。这里推荐它是因为它确确实实在工业界非常常用，可以满足各种级别的需求。相比之下，EGE 之类的只能算是玩具。
 
-未完待续
+### 下载、安装、新建项目
 
-:::
+Qt 作为商业公司是要赚钱的，所以它的[下载链接](https://www.qt.io/download-qt-installer)藏得很深。从刚刚的链接点进去，按绿色的“Download”下载在线安装器。接下来，按照安装器的提示完成安装。它可能需要你注册一个账号，你就老老实实注册。这个是免费开源版，不会花钱的。
+
+安装的过程略微繁琐，但大多保持默认选项即可，让你同意啥你就同意啥。惟一需要注意的，就是在“选择组件”的步骤中，点开“Qt”节点，勾选最新版本的“Qt”即可。
+
+![](image/qt_installer.png)
+
+安装完成后，你应该能找到一个名为 Qt Creator 的程序，启动它。在 Qt Creator 中，新建项目：
+
+![](image/qt_new_project.jpg)
+
+创建的过程保持默认设置（确认一下创建的项目类型是 Qt Widgets Application）即可。之后，Qt Creater 将为你打开这个项目。一个经典的项目内主要包含四个文件：
+- `main.cpp` 程序的入口点；
+- `mainwindow.h` 窗体的声明文件；
+- `mainwindow.cpp` 窗体的定义文件（你大部分代码都会写在这里）；
+- `mainwindow.ui` 窗体的设计文件（用来定义图形界面组件的）。
+
+在进行下一步操作之前，你可能需要稍微提前了解一些——不属于这门课授课范围内的——关于类和对象的 C++ 语法。你可以选择简单阅读一下[我的教程第五章](https://learn-cpp.tk/ch05)。但不读也没关系。
+
+### 观察  `main.cpp`
+
+`main.cpp` 定义了我们熟知的 main 函数。这里的细节不用太在意，你只要注意到这里的 `MainWindow w; w.show();` 这两句就 OK。这表明，程序新建了一个 `MainWindow` 类型的变量 `w`，它代表程序运行的主窗体。而 `w.show()` 则是显示这个窗体的意思。
+
+### 修改 `mainwindow.h`
+
+这里定义了一个“类” `MainWindow`。所谓的“类”，就是“结构体类型”的加强版。但这些都不重要，你需要做的是，在这个类的定义里面（就是 `Q_OBJECT` 下面一行左右的位置），加上这么几行字（还有对应的 `#include`）：
+
+```cpp
+// 加上这两个 #include
+#include <QPainter>
+#include <QMouseEvent>
+
+// ...
+
+class MainWindow : public QMainWindow {
+    Q_OBJECT
+    // 这个位置加上下面三行：
+protected:
+    void paintEvent(QPaintEvent*) override;
+    void mousePressEvent(QMouseEvent*) override;
+
+public:
+   // ...
+}
+```
+
+效果是给这个类增加了两个“成员函数”的声明，它们的具体意思就先不讲了。
+
+### 修改 `mainwindow.cpp`
+
+这里的大部分内容都不用动。你需要做的是，在这个文件的全局的任意位置加上刚刚两个“成员函数”对应的定义：
+
+```cpp
+void MainWindow::paintEvent(QPaintEvent*) {
+    QPainter painter(this);
+    // 这里写绘图用的代码...
+}
+
+void MainWindow::mousePressEvent(QMouseEvent* e) {
+    // 这里写处理鼠标事件用的代码...
+}
+```
+
+意思是什么呢？当窗体每次被绘制的时候，`MainWindow::paintEvent` 这个函数就会被执行。你可以在这里用 `QPainter` 绘制棋盘、棋子等图形。
+
+此外，当窗体的某个位置被点击的时候，`MainWindow::mousePressEvent` 这个函数就会被执行。关于鼠标按键、鼠标位置的信息会被保存在一个结构体里，而这个函数的指针类型参数 `e` 就指向这个结构体。你可以在这里调用 `repaint();` 函数来重新触发窗体的绘制。举一个例子：
+
+```cpp
+int mouseX = 0;
+int mouseY = 0;
+
+void MainWindow::paintEvent(QPaintEvent*) {
+    QPainter painter(this);
+    // 在鼠标位置的右下方画一个 100x100 的圆形
+    painter.drawEllipse(mouseX, mouseY, 100, 100);
+}
+
+void MainWindow::mousePressEvent(QMouseEvent* e) {
+    // 记录鼠标位置，然后触发重绘
+    mouseX = e->pos().x();
+    mouseY = e->pos().y();
+    repaint();
+}
+```
+
+这样的代码，运行之后就会看到每一次鼠标点击后，都会在鼠标位置的右下方画一个圆圈。
+
+![](image/qt_simple_app.png)
+
+模仿类似这样的逻辑，你可以在窗体上绘制各种长方形代表棋盘、按钮，圆形代表棋子；然后通过点击事件的位置，处理相应的程序逻辑并重绘窗体。关于 Qt 绘图的资料，可以在百度上搜索“QPainter”。
+
+Qt 还支持基于控件事件的异步编程，使得你可以用按钮、文本框等常见控件控制程序。但相关的扩展语法知识不是这里能写下的了，所以请同学们自行学习（搜索关键词“信号-槽”）。
