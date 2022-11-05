@@ -260,10 +260,63 @@ int main() {
 
 转义序列甚至可以用来读取键盘事件，比如方向键、Esc 键等等。但这个时候，手动处理它们就略显费劲了。我们可以引入一些第三方库来处理它。
 
-最经典的 TUI 库，莫非类-curses 了。在 macOS 或者 Linux 上，我们经常用 `ncurses` 库；而 Windows 上，则使用 `pdcurses` 库。在程序中引入第三方库对于新手来说是一个不小的挑战，但尝试一下总不是坏处。这里，我们用 Xmake 构建管理工具来引入它们。
+最经典的 TUI 库，莫非类-curses 库了。在 macOS 或者 Linux 上，我们经常用 `ncurses` 库；而 Windows 上，则使用 `pdcurses` 库。在程序中引入第三方库对于新手来说是一个不小的挑战，但尝试一下总不是坏处。这里，我们用 Xmake 构建管理工具来引入它们。
 
-::: info
+请参考[这里](./gui#下载-xmake-构建管理器)的说明，安装好 Xmake。然后，在新建的工作文件夹中编写 `xmake.lua`，内容如下：
 
-未完待续
+<details>
+<summary>Windows 系统点击我</summary>
 
-:::
+```lua
+add_requires("pdcurses", { configs = { port = "wincon"}})
+
+target("my-curses-project")
+    add_packages("pdcurses")
+    add_files("src/*.cpp")
+```
+
+</details>
+
+<details>
+<summary>其它系统点击我</summary>
+
+```lua
+add_requires("ncurses")
+
+target("my-curses-project")
+    add_packages("ncurses")
+    add_files("src/*.cpp")
+```
+
+</details>
+
+然后，与[刚刚页面](./gui#配置-xmake)上的说明类似，在 `src` 文件夹下，建立一个 `main.cpp` 如下：
+
+```cpp
+#include <curses.h>
+
+int main() {
+    initscr();
+    printw("Hello, World!!!");
+    refresh();
+    getch();
+    endwin();
+}
+```
+
+运行
+
+```sh
+xmake f # MinGW 用户，即不用 VS 的 Windows 用户，请在后面添加 -pmingw 参数
+```
+
+进行配置；随后，运行
+
+```sh
+xmake b
+xmake r
+```
+
+编译运行。
+
+类-curses 库的用法，网上也有很多教程，你可以在百度上用“ncurses”作为关键词搜索。[这个英文教程](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/index.html)看上去也挺不错。
