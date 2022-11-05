@@ -4,9 +4,9 @@ head:
   - - link
     - rel: stylesheet
       href: https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css
-  # - - link
-  #   - rel: stylesheet
-  #     href: https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.3/katex.min.css
+  - - link
+    - rel: stylesheet
+      href: https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.3/katex.min.css
 ---
 
 # 算法提示
@@ -53,5 +53,4 @@ head:
 <li id="ref-minmax">关于<strong>负极大值搜索</strong>，中文资料可以自行百度，英文资料建议参考文章 <i>A Comparative Study of Game Tree Searching Methods</i>。</li>
 <li id="ref-mcts">关于 <strong>MCTS 方法</strong>，可以参考文章 <i>Revisiting Monte-Carlo Tree Search on a Normal Form Game: NoGo</i>。</li>
 <li id="ref-eval">关于<strong>估值函数</strong>，尚未发现比较经典的方法，可以酌情参考 <i>Artificial Intelligence Algorithm for the Game of NoGo based on Value Evaluation</i> 一文。不过要注意的是，这篇文章的文笔十分捉急，可能会带来诸如误解等阅读障碍，需要格外注意。</li>
-
 </ol>

@@ -153,11 +153,6 @@ export default {
           {
             text: "“抄程序”练习",
             link: "/answer/copy"
-          },
-          
-          {
-            text: "题目“统计字符”",
-            link: "/answer/statistics"
           }
         ],
       },
