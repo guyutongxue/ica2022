@@ -319,4 +319,4 @@ xmake r
 
 编译运行。
 
-类-curses 库的用法，网上也有很多教程，你可以在百度上用“ncurses”作为关键词搜索。[这个英文教程](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/index.html)看上去也挺不错。
+类-curses 库的用法，网上也有很多教程，你可以在百度上用“ncurses”作为关键词搜索。[这个英文教程](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/index.html)看上去也挺不错。我[在这里](example/curses)提供了一份示例代码可供参考。

@@ -138,7 +138,7 @@ F6 运行的话，则稍微复杂一点。最简单的，你直接上 GitHub 把
 }
 ```
 
-关于 BGI/EGE 的使用，你可以在百度上搜索“graphics.h”。你还可以参考 EGE 的[官方文档](https://xege.org/manual/)。具体的我不太懂，就不多说了；请同学们自己探索。
+关于 BGI/EGE 的使用，你可以在百度上搜索“graphics.h”。你还可以参考 EGE 的[官方文档](https://xege.org/manual/)。我自己写了一份[示例代码](example/bgi)可供参考。
 
 ## Qt
 
