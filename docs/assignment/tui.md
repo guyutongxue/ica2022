@@ -268,10 +268,10 @@ int main() {
 <summary>Windows 系统点击我</summary>
 
 ```lua
-add_requires("pdcurses", { configs = { port = "wincon"}})
+add_requires("pdcursesmod", { configs = { port = "wincon"}})
 
 target("my-curses-project")
-    add_packages("pdcurses")
+    add_packages("pdcursesmod")
     add_files("src/*.cpp")
 ```
 
