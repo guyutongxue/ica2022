@@ -16,7 +16,7 @@
 - [关于 GUI 开发](./gui)
 - [算法提示](./algorithm)
 - [Botzone 使用方法](./botzone)
-- [关于 Botzone CLI](./cli)
+- [关于 Botzone Bot](./bot)
 
 ## 我该如何开始？
 
@@ -48,7 +48,7 @@
 
 为了控制优秀率，以及检查算法部分的代码质量，我们将开设 Botzone 比赛。
 
-如果你要参加比赛，你需要再写一份**单文件**代码，提交到 Botzone 平台。详细说明请参考 [Botzone 使用方法](./botzone)。
+如果你要参加比赛，你需要再写一份**单文件**代码，提交到 Botzone 平台。详细说明请参考 [Botzone 使用方法](./botzone) 和[关于 Botzone Bot](./bot)。
 
 ### 五、面测与提交代码
 

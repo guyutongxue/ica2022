@@ -129,8 +129,8 @@ export default {
             link: "/assignment/botzone"
           },
           {
-            text: "关于 Botzone CLI",
-            link: "/assignment/cli"
+            text: "关于 Botzone Bot",
+            link: "/assignment/bot"
           }
         ]
       },

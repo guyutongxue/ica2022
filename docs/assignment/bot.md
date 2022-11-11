@@ -9,13 +9,13 @@ head:
       href: https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.3/katex.min.css
 ---
 
-# 关于 Botzone CLI
+# 关于 Botzone Bot
 
 ## 重要说明
 
 写在最前面：你**不应当**将大作业代码提交到 Botzone。你提交到 Botzone 的，是一份独立的单个源文件程序，其中包含你大作业中“算法部分”的代码，以及输入输出交互代码。
 
-## 基于 CLI 的输入输出
+## 输入输出
 
 Botzone 平台会这样使用你的算法代码：
 
