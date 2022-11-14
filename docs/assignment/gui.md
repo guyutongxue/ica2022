@@ -102,7 +102,7 @@ VS Code 第一次肯定会告诉你 `<graphics.h>` 找不到之类的错误。�
 然后，运行命令
 
 ```sh
-xmake projects -kcompile_commands .vscode
+xmake project -kcompile_commands .vscode
 ```
 
 即可。你如果直接从 GitHub 上下载了我提供的模板，则可以 Ctrl+Shift+P ，“Run Tasks” 中运行 “update intellisense”。如果你还安装了[Xmake VS Code 扩展](https://marketplace.visualstudio.com/items?itemName=tboox.xmake-vscode)，则还可以运行 “Xmake: Update IntelliSense” 命令。一般这个操作只用做一次，智能提示失效的时候再重新执行就可以。
