@@ -6,6 +6,7 @@
 
 - 请按照[这里](../gui#bgi)的说明，配置好 Xmake 及到第三方库的引用。
 - 将下述代码粘贴到 `src/main.cpp` 即可。
+- 如果你使用 Visual Studio (MSVC) 编译器，则在 `xmake.lua` 中添加 `set_languages("c++17")` `add_cxflags("/utf-8")` 两行。
 - 助教也是第一次写 BGI，如果有写得啰嗦的地方烦请指教。
 
 :::
