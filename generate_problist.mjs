@@ -106,6 +106,7 @@ async function login() {
 }
 
 const COURSE_ID = "0b0ead5e1550494cb060fca75d9e2604";
+const IGNORED = ["所有作业（复习用，不记成绩）", "第三阶段编程练习（0）（不记成绩）", "编程填空练习（不记成绩）"];
 
 (async () => {
   if (!(await login())) process.exit();
@@ -123,7 +124,7 @@ const COURSE_ID = "0b0ead5e1550494cb060fca75d9e2604";
       (
         /** @type {{ course: { problemlists: { id: string, title: string }[] }}} */ j
       ) => {
-        return j.course.problemlists.filter(({ title }) => !title.includes("所有作业") && !title.includes("（0）"));
+        return j.course.problemlists.filter(({ title }) => !IGNORED.includes(title));
       }
     );
   const problemInfo = await Promise.all(
