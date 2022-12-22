@@ -3,9 +3,7 @@
 import fetch from "node-fetch";
 import * as fs from "node:fs";
 import * as path from "node:path";
-
-const ANSWER_DIRECTORY = "pg_answer_easy";
-const OUTPUT_FILE = `dist/${ANSWER_DIRECTORY}.md`;
+import { fileURLToPath } from "node:url";
 
 /** @type {Record<string, string>} */
 let _cookie = {
@@ -21,7 +19,7 @@ function saveCookie(/** @type {string[]} */ cookie) {
 /**
  * @returns {{ cookie?: string }}
  */
-function loadCookie() {
+export function loadCookie() {
   const cookie = Object.entries(_cookie)
     .map(([k, v]) => `${k}=${v}`)
     .join("; ");
@@ -32,7 +30,7 @@ function loadCookie() {
 const userAgent =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.73";
 const acceptLanguage = "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6";
-const headers = {
+export const headers = {
   "User-Agent": userAgent,
   "Accept-Language": acceptLanguage,
 };
@@ -44,7 +42,7 @@ function getPassword() {
   return process.env.PG_PASSWORD;
 }
 
-async function login() {
+export async function login() {
   const username = getUsername();
   const password = getPassword();
   if (!username || !password) {
@@ -93,7 +91,7 @@ async function login() {
           return false;
         }
         console.log("Login success.");
-        saveCookie(cookie.split(', '));
+        saveCookie(cookie.split(", "));
         console.log(_cookie);
         return true;
       });
@@ -105,94 +103,102 @@ async function login() {
     });
 }
 
-const COURSE_ID = "0b0ead5e1550494cb060fca75d9e2604";
-const IGNORED = ["所有作业（复习用，不记成绩）", "第三阶段编程练习（0）（不记成绩）", "编程填空练习（不记成绩）"];
+export const COURSE_ID = "0b0ead5e1550494cb060fca75d9e2604";
+const IGNORED = [
+  "所有作业（复习用，不记成绩）",
+  "第三阶段编程练习（0）（不记成绩）",
+  "编程填空练习（不记成绩）",
+];
 
-(async () => {
-  if (!(await login())) process.exit();
-  const setInfos = await fetch(
-    `https://programming.pku.edu.cn/course/${COURSE_ID}/?type=json`,
-    {
-      headers: {
-        ...headers,
-        ...loadCookie(),
-      },
-    }
-  )
-    .then((r) => r.json())
-    .then(
-      (
-        /** @type {{ course: { problemlists: { id: string, title: string }[] }}} */ j
-      ) => {
-        return j.course.problemlists.filter(({ title }) => !IGNORED.includes(title));
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  (async () => {
+    if (!(await login())) process.exit();
+    const setInfos = await fetch(
+      `https://programming.pku.edu.cn/course/${COURSE_ID}/?type=json`,
+      {
+        headers: {
+          ...headers,
+          ...loadCookie(),
+        },
       }
-    );
-  const problemInfo = await Promise.all(
-    setInfos.map(async (set) => {
-      console.log(`Fetch set: ${set.id}`);
-      return fetch(
-        `https://programming.pku.edu.cn/probset/${set.id}/?type=json`,
-        {
-          headers: {
-            ...headers,
-            ...loadCookie(),
-          },
+    )
+      .then((r) => r.json())
+      .then(
+        (
+          /** @type {{ course: { problemlists: { id: string, title: string }[] }}} */ j
+        ) => {
+          return j.course.problemlists.filter(
+            ({ title }) => !IGNORED.includes(title)
+          );
         }
-      )
-        .then((r) => r.json())
-        .then(async (/** @type {any} */ json) => {
-          /**
-           * @type {{
-           *  title: string,
-           *  id: string
-           * }[]} */
-          const problems = json.problemlist.problems;
-          return {
-            title: set.title,
-            id: set.id,
-            problems: await Promise.all(
-              problems.map(async ({ id }) => {
-                console.log(`Set ${set.id}, Fetch problem: ${id}`);
-                return fetch(
-                  `https://programming.pku.edu.cn/probset/${set.id}/${id}/?type=json`,
-                  {
-                    headers: {
-                      ...headers,
-                      ...loadCookie(),
-                    },
-                  }
-                )
-                  .then((r) => r.json())
-                  .then((/** @type {any} */ json) => {
-                    /**
-                     * @type {{
-                     *  title: string,
-                     *  id: string;
-                     *  description: string,
-                     *  aboutInput: string;
-                     *  aboutOutput: string;
-                     * }} */
-                    const problem = json.problem;
-                    function htmlify(/** @type {string} */ str) {
-                      return `<p>${str
-                        .replace(/\n/g, "<br>")
-                        .replace(/<\/?strong>/g, "")
-                        .replace(/<\/?font(\s.*?)?>/g, "")}</p>`;
+      );
+    const problemInfo = await Promise.all(
+      setInfos.map(async (set) => {
+        console.log(`Fetch set: ${set.id}`);
+        return fetch(
+          `https://programming.pku.edu.cn/probset/${set.id}/?type=json`,
+          {
+            headers: {
+              ...headers,
+              ...loadCookie(),
+            },
+          }
+        )
+          .then((r) => r.json())
+          .then(async (/** @type {any} */ json) => {
+            /**
+             * @type {{
+             *  title: string,
+             *  id: string
+             * }[]} */
+            const problems = json.problemlist.problems;
+            return {
+              title: set.title,
+              id: set.id,
+              problems: await Promise.all(
+                problems.map(async ({ id }) => {
+                  console.log(`Set ${set.id}, Fetch problem: ${id}`);
+                  return fetch(
+                    `https://programming.pku.edu.cn/probset/${set.id}/${id}/?type=json`,
+                    {
+                      headers: {
+                        ...headers,
+                        ...loadCookie(),
+                      },
                     }
-                    return {
-                      title: problem.title,
-                      id: problem.id,
-                      description: htmlify(problem.description),
-                      aboutInput: htmlify(problem.aboutInput),
-                      aboutOutput: htmlify(problem.aboutOutput),
-                    };
-                  });
-              })
-            ),
-          };
-        });
-    })
-  );
+                  )
+                    .then((r) => r.json())
+                    .then((/** @type {any} */ json) => {
+                      /**
+                       * @type {{
+                       *  title: string,
+                       *  id: string;
+                       *  description: string,
+                       *  aboutInput: string;
+                       *  aboutOutput: string;
+                       * }} */
+                      const problem = json.problem;
+                      function htmlify(/** @type {string} */ str) {
+                        return `<p>${str
+                          .replace(/\n/g, "<br>")
+                          .replace(/<\/?strong>/g, "")
+                          .replace(/<\/?font(\s.*?)?>/g, "")}</p>`;
+                      }
+                      return {
+                        title: problem.title,
+                        id: problem.id,
+                        description: htmlify(problem.description),
+                        aboutInput: htmlify(problem.aboutInput),
+                        aboutOutput: htmlify(problem.aboutOutput),
+                      };
+                    });
+                })
+              ),
+            };
+          });
+      })
+    );
 
-  fs.writeFileSync("docs/public/problist.json", JSON.stringify(problemInfo));
-})();
+    fs.writeFileSync("docs/public/problist.json", JSON.stringify(problemInfo));
+  })();
+}

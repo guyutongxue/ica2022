@@ -19,14 +19,15 @@
   },
   "devDependencies": {
     "@types/node": "^18.7.16",
+    "cheerio": "1.0.0-rc.12",
     "node-fetch": "^3.2.10",
     "vitepress": "1.0.0-alpha.13",
     "vue": "^3.2.38"
   },
   "dependencies": {
     "@gytx/gcc-translation": "^0.1.1",
-    "katex": "^0.16.3",
     "@renbaoshuo/markdown-it-katex": "^2.0.2",
+    "katex": "^0.16.3",
     "prismjs": "^1.29.0"
   }
 }
