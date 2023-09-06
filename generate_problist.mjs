@@ -199,6 +199,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       })
     );
 
-    fs.writeFileSync("docs/public/problist.json", JSON.stringify(problemInfo));
+    fs.writeFileSync("data/problist.json", JSON.stringify(problemInfo));
   })();
 }

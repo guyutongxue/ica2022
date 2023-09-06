@@ -156,6 +156,7 @@
 </style>
 
 <script setup>
+import { data as problist } from '../../data/problist.data.ts'
 import { ref } from "vue";
 import Prism from "prismjs";
 import "prismjs/components/prism-clike.js";
@@ -163,7 +164,6 @@ import "prismjs/components/prism-c.js";
 import "prismjs/components/prism-cpp.js";
 import "prismjs/themes/prism-dark.min.css";
 
-const problist = ref([]);
 const sources = ref({});
 const currentId = ref(null);
 const currentDsc = ref(null);
@@ -190,7 +190,7 @@ async function loadSource(prob) {
   }
 }
 
-fetch("/problist.json").then(r => r.json()).then(v => problist.value = v);
+// fetch(withBase("/problist.json")).then(r => r.json()).then(v => problist.value = v);
 
 function expand() {
   document.querySelector("#container").classList.add("fullscreen");
