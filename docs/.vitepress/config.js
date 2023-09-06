@@ -90,10 +90,6 @@ export default {
           {
             text: "编码",
             link: "/cpp/encoding"
-          },
-          {
-            text: "展望未来",
-            link: "/cpp/future"
           }
         ],
       },
@@ -135,7 +131,7 @@ export default {
         ]
       },
       {
-        text: "课件勘误",
+        text: "课件勘误（2022）",
         items: [
           {
             text: "勘误列表",
@@ -144,7 +140,7 @@ export default {
         ],
       },
       {
-        text: "习题答案",
+        text: "习题答案（2022）",
         items: [
           {
             text: "习题答案",
@@ -165,6 +161,9 @@ export default {
           },
         ],
       },
+    ],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/Guyutongxue/ica2022' }
     ],
   },
   markdown: {
